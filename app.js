@@ -8,7 +8,8 @@ const session = require('express-session');
 const logger = require('morgan');
 
 const userRouter = require('./routes/user');
-const { sequelize } = require('./models')
+const fs = require('fs');
+const https = require('https');
 
 // morgan : 서버 요청에 대한 로그를 찍어준다.
 app.use(logger('dev'));
@@ -46,22 +47,27 @@ app.use(
   })
 );
 
-sequelize.sync({ force: false})
-.then(() => {
-  console.log('DB연결 성공');
-})
-.catch((err) => {
-  console.log(err)
-})
-
-
-
 app.use('/user', userRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+const server = https
+  .createServer(
+    {
+      key: fs.readFileSync(__dirname + "/key.pem"),
+      cert: fs.readFileSync(__dirname + "/cert.pem"),
+    },
+    app
+  )
+  .listen(port, () => {
+    console.log(`server listen in ${port}`);
+  });
+
+module.exports = server;
+
+
+// app.listen(port, () => {
+//   console.log(`Example app listening at http://localhost:${port}`)
+// })
