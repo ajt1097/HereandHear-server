@@ -8,7 +8,7 @@ const session = require('express-session');
 const logger = require('morgan');
 
 const userRouter = require('./routes/user');
-
+const { sequelize } = require('./models')
 
 // morgan : 서버 요청에 대한 로그를 찍어준다.
 app.use(logger('dev'));
@@ -46,7 +46,13 @@ app.use(
   })
 );
 
-
+sequelize.sync({ force: false})
+.then(() => {
+  console.log('DB연결 성공');
+})
+.catch((err) => {
+  console.log(err)
+})
 
 
 
