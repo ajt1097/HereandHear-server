@@ -10,6 +10,7 @@ const logger = require('morgan');
 const userRouter = require('./routes/user');
 const fs = require('fs');
 const https = require('https');
+const { sequelize } = require('./models');
 
 // morgan : 서버 요청에 대한 로그를 찍어준다.
 app.use(logger('dev'));
@@ -51,6 +52,16 @@ app.use('/user', userRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
+})
+
+// 데이터베이스 연결
+
+sequelize.sync({force: false})
+.then(()=> {
+  console.log('데이터베이스 연결 성공');
+})
+.catch((err) => {
+  console.error(err)
 })
 
 const server = https
