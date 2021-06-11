@@ -8,6 +8,8 @@ const session = require('express-session');
 const logger = require('morgan');
 
 const userRouter = require('./routes/user');
+const contentsRouter = require('./routes/contents');
+
 const fs = require('fs');
 const https = require('https');
 const { sequelize } = require('./models');
@@ -49,13 +51,13 @@ app.use(
 );
 
 app.use('/user', userRouter);
+app.use('/contents', contentsRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
 // 데이터베이스 연결
-
 sequelize.sync({force: false})
 .then(()=> {
   console.log('데이터베이스 연결 성공');
