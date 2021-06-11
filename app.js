@@ -9,6 +9,7 @@ const logger = require('morgan');
 
 const userRouter = require('./routes/user');
 const contentsRouter = require('./routes/contents');
+const favoriteRouter = require('./routes/favorite');
 
 const fs = require('fs');
 const https = require('https');
@@ -52,19 +53,20 @@ app.use(
 
 app.use('/user', userRouter);
 app.use('/contents', contentsRouter);
+app.use('/favorite', favoriteRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
 // 데이터베이스 연결
-sequelize.sync({force: false})
-.then(()=> {
-  console.log('데이터베이스 연결 성공');
-})
-.catch((err) => {
-  console.error(err)
-})
+sequelize.sync({ force: false })
+  .then(() => {
+    console.log('데이터베이스 연결 성공');
+  })
+  .catch((err) => {
+    console.error(err)
+  })
 
 const server = https
   .createServer(
