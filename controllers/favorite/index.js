@@ -1,5 +1,4 @@
 module.exports = {
-  add: require('./add'),
-  delete: require('./delete'),
+  addOrDelete: require('./addOrDelete'),
   list: require('./list'),
 };

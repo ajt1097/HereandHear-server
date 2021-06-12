@@ -2,7 +2,6 @@ const { favorites } = require("../../models");
 
 module.exports = {
   post: async (req, res) => {
-    console.log('add')
     let id = req.session.userId;
     let contentId = req.body.contentId;
 
@@ -14,7 +13,7 @@ module.exports = {
     })
 
     if (target) {
-      res.status(404).send();
+      await target.destroy();
     } else {
       await favorites.create({
         userId: id,
