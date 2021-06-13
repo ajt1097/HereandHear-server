@@ -11,29 +11,44 @@ module.exports = {
       imgPath: {
         type: Sequelize.STRING
       },
-      thumbnailPath: {
+      imgPath2: {
+        type: Sequelize.STRING
+      },
+      imgPath3: {
         type: Sequelize.STRING
       },
       audioPath: {
         type: Sequelize.STRING
       },
-      abstract: {
+      title: {
         type: Sequelize.STRING
       },
-      title: {
+      subtitle: {
+        type: Sequelize.STRING
+      },
+      abstract: {
         type: Sequelize.STRING
       },
       text: {
         type: Sequelize.STRING
       },
-      weather: {
+      text2: {
+        type: Sequelize.STRING
+      },
+      text3: {
         type: Sequelize.STRING
       },
       location: {
         type: Sequelize.STRING
       },
+      weather: {
+        type: Sequelize.STRING
+      },
       category: {
         type: Sequelize.STRING
+      },
+      month: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
