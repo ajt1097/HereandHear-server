@@ -16,14 +16,19 @@ module.exports = (sequelize, DataTypes) => {
   };
   content.init({
     imgPath: DataTypes.STRING,
-    thumbnailPath: DataTypes.STRING,
+    imgPath2: DataTypes.STRING,
+    imgPath3: DataTypes.STRING,
     audioPath: DataTypes.STRING,
-    abstract: DataTypes.STRING,
     title: DataTypes.STRING,
+    subtitle: DataTypes.STRING,
+    abstract: DataTypes.STRING,
     text: DataTypes.STRING,
-    weather: DataTypes.STRING,
+    text2: DataTypes.STRING,
+    text3: DataTypes.STRING,
     location: DataTypes.STRING,
+    weather: DataTypes.STRING,
     category: DataTypes.STRING,
+    month: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'content',
