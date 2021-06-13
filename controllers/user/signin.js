@@ -1,15 +1,19 @@
 const { user } = require("../../models");
+const makePasswordHashed = require('./makePasswordHashed');
 
 module.exports = {
-	post: (req, res) => {
+	post: async (req, res) => {
 		const { email, password } = req.body;
+
+		// 사용자의 salt값과 암호화 되지 않은 비밀번호를 조합하여 사용자의 비밀번호를 조회한다.
+		let hashedPassword = await makePasswordHashed(email, password);
 
 		req.session.regenerate(async () => {
 			try {
 				const foundUser = await user.findOne({
 					where: {
 						email: email,
-						password: password
+						password: hashedPassword
 					}
 				})
 
