@@ -10,6 +10,7 @@ const logger = require('morgan');
 const userRouter = require('./routes/user');
 const contentsRouter = require('./routes/contents');
 const favoriteRouter = require('./routes/favorite');
+const kakaoRouter = require('./routes/kakao');
 
 const fs = require('fs');
 const https = require('https');
@@ -54,6 +55,7 @@ app.use(
 app.use('/user', userRouter);
 app.use('/contents', contentsRouter);
 app.use('/favorite', favoriteRouter);
+app.use('/kakao', kakaoRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
