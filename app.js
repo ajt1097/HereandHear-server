@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require('express')
 const app = express()
-const port = 80
+const port = 443
 const cors = require('cors');
 const cookieParser = require("cookie-parser");
 const session = require('express-session');
@@ -42,7 +42,7 @@ app.use(
     resave: false, // 클라 접속할 때마다 세션id 새로 발급할 것인지 
     saveUninitialized: true, // 세션 사용하기 전까지 식별자 발급하지 않도록
     cookie: {
-      domain: 'localhost',
+      domain: 'ec2-18-117-241-8.us-east-2.compute.amazonaws.com',
       path: '/',
       maxAge: 24 * 6 * 60 * 10000,
       sameSite: 'none', //
