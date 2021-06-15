@@ -3,11 +3,7 @@ const { user } = require("../../models");
 module.exports = {
 	get: async (req, res) => {
 
-		console.log('get userinfo request')
-
-		let userId = req.session.userId;
-
-		console.log(userId)
+		let userId = req.params.id;
 
 		if (!userId) {
       res.status(404).send({ data: null, message: 'not found' });
@@ -17,6 +13,7 @@ module.exports = {
 			}).catch((err) => res.json(err));
 
 			delete data.dataValues.password;
+			delete data.dataValues.salt;
 
 			res.status(200).json({
 				data: data.dataValues,

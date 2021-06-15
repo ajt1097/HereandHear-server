@@ -2,24 +2,28 @@ const { favorites } = require("../../models");
 
 module.exports = {
   post: async (req, res) => {
-    let id = req.session.userId;
+    let userId = req.body.userId;
     let contentId = req.body.contentId;
 
     let target = await favorites.findOne({
       where: {
-        userId: id,
+        userId: userId,
         contentsId: contentId
       }
     })
 
+    let created;
+
     if (target) {
       await target.destroy();
+      res.send(target)
     } else {
-      await favorites.create({
-        userId: id,
+      created = await favorites.create({
+        userId: userId,
         contentsId: contentId
       })
+      created = created.get({ plain: true })
+      res.send(created);
     }
-    res.end()
   }
 }
