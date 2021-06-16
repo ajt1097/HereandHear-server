@@ -14,16 +14,16 @@ module.exports = {
       imgPath2: {
         type: Sequelize.STRING
       },
-      imgPath3: {
-        type: Sequelize.STRING
-      },
       audioPath: {
         type: Sequelize.STRING
       },
       title: {
         type: Sequelize.STRING
       },
-      subtitle: {
+      weatherTitle: {
+        type: Sequelize.STRING
+      },
+      seasonTitle: {
         type: Sequelize.STRING
       },
       abstract: {
