@@ -9,7 +9,7 @@ module.exports = {
     var data = qs.stringify({
       'grant_type': 'authorization_code',
       'client_id': '486e2bb9e00eb478cc738f9c518eb926',
-      'redirect_uri': 'http://herehear.s3-website.ap-northeast-2.amazonaws.com/',
+      'redirect_uri': 'http://hereandhear.s3-website.ap-northeast-2.amazonaws.com/',
       'code': authorizationCode
     });
     var config = {
