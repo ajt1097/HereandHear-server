@@ -17,10 +17,10 @@ module.exports = (sequelize, DataTypes) => {
   content.init({
     imgPath: DataTypes.STRING,
     imgPath2: DataTypes.STRING,
-    imgPath3: DataTypes.STRING,
     audioPath: DataTypes.STRING,
     title: DataTypes.STRING,
-    subtitle: DataTypes.STRING,
+    weatherTitle: DataTypes.STRING,
+    seasonTitle: DataTypes.STRING,
     abstract: DataTypes.STRING,
     text: DataTypes.STRING,
     text2: DataTypes.STRING,
