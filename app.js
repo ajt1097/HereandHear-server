@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require('express')
 const app = express()
-const port = 443
+const port = 80
 const cors = require('cors');
 const cookieParser = require("cookie-parser");
 const session = require('express-session');
@@ -12,8 +12,6 @@ const contentsRouter = require('./routes/contents');
 const favoriteRouter = require('./routes/favorite');
 const kakaoRouter = require('./routes/kakao');
 
-const fs = require('fs');
-const https = require('https');
 const { sequelize } = require('./models');
 
 // morgan : 서버 요청에 대한 로그를 찍어준다.
@@ -42,7 +40,7 @@ app.use(
     resave: false, // 클라 접속할 때마다 세션id 새로 발급할 것인지 
     saveUninitialized: true, // 세션 사용하기 전까지 식별자 발급하지 않도록
     cookie: {
-     //  domain: 'ec2-18-117-241-8.us-east-2.compute.amazonaws.com',
+      //  domain: 'ec2-18-117-241-8.us-east-2.compute.amazonaws.com',
       path: '/',
       maxAge: 24 * 6 * 60 * 10000,
       sameSite: 'none', //
@@ -70,19 +68,11 @@ sequelize.sync({ force: false })
     console.error(err)
   })
 
-const server = https
-  .createServer(
-    {
-      key: fs.readFileSync(__dirname + "/key.pem"),
-      cert: fs.readFileSync(__dirname + "/cert.pem"),
-    },
-    app
-  )
-  .listen(port, () => {
-    console.log(`server listen in ${port}`);
-  });
+app.listen(port, () => {
+  console.log(`server listen in ${port}`);
+});
 
-module.exports = server;
+module.exports = app;
 
 
 // app.listen(port, () => {
